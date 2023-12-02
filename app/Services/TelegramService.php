@@ -31,7 +31,7 @@ class TelegramService
 
     public function isChatMember(int $userId, int|string $chatId): bool
     {
-        return $this->getChatMember($userId, $chatId)->result->status != 'left';
+        return $this->getChatMember($userId, $chatId)?->result?->status != 'left';
     }
 
     public function deleteMessage(int|string $chatId, int $messageId): bool
@@ -39,8 +39,7 @@ class TelegramService
         return (bool)Http::post("$this->url/" . __FUNCTION__, [
             'chat_id' => $chatId,
             'message_id' => $messageId,
-        ])->object()->result;
-
+        ])->object()?->result;
     }
 
     public function sendAudio(int|string $chatId, string $path): ?object
@@ -81,18 +80,5 @@ class TelegramService
     public function getUrl(): string
     {
         return $this->url;
-    }
-
-    public function onCommand(string $command, Closure|null $callback): ?Closure
-    {
-
-        return request()->all()['message']['text'] == "/$command"
-            ? $callback
-            : null;
-    }
-
-    public function handleForceJoinToChannels()
-    {
-
     }
 }
