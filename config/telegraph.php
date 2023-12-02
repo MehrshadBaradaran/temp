@@ -1,5 +1,6 @@
 <?php
 
+use App\Telegram\MainWebhookHandler;
 use DefStudio\Telegraph\Telegraph;
 
 return [
@@ -21,7 +22,7 @@ return [
      *
      * For reference, see https://defstudio.github.io/telegraph/webhooks/overview
      */
-    'webhook_handler' => \App\Handlers\MyWebHookHandler::class,
+    'webhook_handler' => MainWebhookHandler::class,
 
     /*
      * Sets a custom domain when registering a webhook. This will allow a local telegram bot api server

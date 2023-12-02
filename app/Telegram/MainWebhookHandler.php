@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Handlers;
+namespace App\Telegram;
 
 use App\Downloader\DirectDownloader;
 use App\Services\TelegramService;
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Stringable;
 use Log;
 
-class MyWebhookHandler extends WebhookHandler
+class MainWebhookHandler extends WebhookHandler
 {
     protected string $stage = 'await';
 
