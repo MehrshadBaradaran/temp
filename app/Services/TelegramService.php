@@ -36,10 +36,11 @@ class TelegramService
 
     public function deleteMessage(int|string $chatId, int $messageId): bool
     {
-        return (bool)Http::post("$this->url/" . __FUNCTION__, [
+        $res = Http::post("$this->url/" . __FUNCTION__, [
             'chat_id' => $chatId,
             'message_id' => $messageId,
-        ])->object()?->result;
+        ]);
+        return $res->ok() ? $res->object()?->result : false;
     }
 
     public function sendAudio(int|string $chatId, string $path): ?object
@@ -52,9 +53,9 @@ class TelegramService
 //            ])->object();
 
         return Http::post("$this->url/" . __FUNCTION__, [
-                'chat_id' => $chatId,
-                'audio' => $path,
-            ])->object();
+            'chat_id' => $chatId,
+            'audio' => $path,
+        ])->object();
     }
 
     public function sendVideo(int|string $chatId, string $path): ?object
