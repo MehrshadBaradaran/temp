@@ -94,8 +94,6 @@ class DirectDownloader
 
         File::put(public_path($path), $file->body());
 
-        return public_path($path);
-//        return asset($path);
-//        return config('app.url') . '/' . $path;
+        return asset($path);
     }
 }
