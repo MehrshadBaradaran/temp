@@ -44,22 +44,32 @@ class TelegramService
 
     public function sendAudio(int|string $chatId, string $path): ?object
     {
-        $file = fopen($path, 'r');
+//        $file = fopen($path, 'r');
+//
+//        return Http::attach('audio', $file)
+//            ->post("$this->url/" . __FUNCTION__, [
+//                'chat_id' => $chatId,
+//            ])->object();
 
-        return Http::attach('audio', $file)
-            ->post("$this->url/" . __FUNCTION__, [
+        return Http::post("$this->url/" . __FUNCTION__, [
                 'chat_id' => $chatId,
+                'audio' => $path,
             ])->object();
     }
 
     public function sendVideo(int|string $chatId, string $path): ?object
     {
-        $file = fopen($path, 'r');
+//        $file = fopen($path, 'r');
+//
+//        return Http::attach('video', $file)
+//            ->post("$this->url/" . __FUNCTION__, [
+//                'chat_id' => $chatId,
+//            ])->object();
 
-        return Http::attach('video', $file)
-            ->post("$this->url/" . __FUNCTION__, [
-                'chat_id' => $chatId,
-            ])->object();
+        return Http::post("$this->url/" . __FUNCTION__, [
+            'chat_id' => $chatId,
+            'video' => $path,
+        ])->object();
     }
 
     public function sendFile(int|string $chatId, string $path, string $type): ?object
